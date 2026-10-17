@@ -41,7 +41,7 @@ Pages nie obsłuży adresu bez `www` (`juracode.pl`), a Email Routing nie zadzia
 
 Na stronach jest pełna nazwa firmy **JURACODE Krzysztof Jura** (jak w CEIDG – musi się zgadzać
 z numerem D-U-N-S i danymi w Google Play Console), **NIP 5732826452** i **REGON 387212788**.
-Adres firmy (ul. gen. Leopolda Okulickiego 53 lok. 32) jest podany w sekcji kontaktowej, w danych
+Adres firmy (ul. gen. Leopolda Okulickiego 53 lok. 32, 42-218 Częstochowa) jest podany w sekcji kontaktowej, w danych
 dla Google i w politykach prywatności – wymaga tego ustawa o świadczeniu usług drogą elektroniczną.
 W stopce są tylko nazwa, NIP i REGON. Klucz Web3Forms jest wpisany w oba formularze.
 
