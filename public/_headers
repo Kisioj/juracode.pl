@@ -1,4 +1,4 @@
-# Nagłówki HTTP dla Cloudflare Pages (https://developers.cloudflare.com/pages/configuration/headers/)
+# Nagłówki HTTP dla Cloudflare Workers (static assets) – składnia jak w Cloudflare Pages
 
 /*
   X-Content-Type-Options: nosniff
@@ -10,10 +10,3 @@
 
 /assets/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
-
-# Adresy *.pages.dev nie powinny trafiać do Google (duplikat treści z juracode.pl)
-https://:project.pages.dev/*
-  X-Robots-Tag: noindex
-
-https://:version.:project.pages.dev/*
-  X-Robots-Tag: noindex

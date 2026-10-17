@@ -1,11 +1,13 @@
 # juracode.pl – strona wizytówka JuraCode
 
 Statyczna strona (HTML + CSS + vanilla JS, bez frameworków i build-stepu) w dwóch językach,
-hostowana na Cloudflare Pages. Formularz kontaktowy działa przez Web3Forms,
-poczta `kontakt@juracode.pl` jest przekierowywana na `juracode@gmail.com`.
+hostowana na Cloudflare Workers (static assets, publikacja automatyczna z GitHuba).
+Formularz kontaktowy działa przez Web3Forms, poczta `kontakt@juracode.pl` jest przekierowywana
+na `juracode@gmail.com`.
 
 ```
-public/                              ← tylko ten katalog trafia na Cloudflare Pages
+wrangler.jsonc                       ← konfiguracja Cloudflare Workers (serwuje katalog public/)
+public/                              ← tylko ten katalog jest publikowany
 ├── index.html                       /                                 PL – strona główna
 ├── polityka-prywatnosci/            /polityka-prywatnosci/            PL – polityka serwisu
 ├── polityka-prywatnosci-aplikacji/  /polityka-prywatnosci-aplikacji/  PL – polityka aplikacji (Google Play)
@@ -16,14 +18,14 @@ public/                              ← tylko ten katalog trafia na Cloudflare 
 │   ├── app-privacy-policy/          /en/app-privacy-policy/           EN – polityka aplikacji (Google Play)
 │   └── data-deletion/               /en/data-deletion/                EN – usuwanie konta (Google Play)
 ├── 404.html, robots.txt, sitemap.xml
-├── _headers                         nagłówki bezpieczeństwa i cache (Cloudflare Pages)
+├── _headers                         nagłówki bezpieczeństwa i cache
 └── assets/ (css, js, img)
 ```
 
 Jak to działa:
 
 ```
-Odwiedzający ──► juracode.pl (Cloudflare Pages)
+Odwiedzający ──► juracode.pl (Cloudflare Workers)
                      │ formularz
                      ▼
                  Web3Forms ─────────────────────────────► juracode@gmail.com
@@ -33,7 +35,7 @@ Ty odpowiadasz z Gmaila "jako kontakt@juracode.pl" ─► smtp.gmail.com ─► 
 
 DNS domeny przenosimy z OVH do Cloudflare (darmowy plan). Domena dalej jest
 zarejestrowana i opłacana w OVH – zmieniają się tylko serwery DNS. Bez tego Cloudflare
-Pages nie obsłuży adresu bez `www` (`juracode.pl`), a Email Routing nie zadziała.
+nie podepnie strony pod adres bez `www` (`juracode.pl`), a Email Routing nie zadziała.
 
 ---
 
@@ -77,29 +79,28 @@ Przed spamem chroni ukryte pole `botcheck`. Darmowy plan: 250 wiadomości/miesi�
 4. Czekaj na maila od Cloudflare, że domena jest aktywna (zwykle od kilkunastu minut do kilku
    godzin, maksymalnie 24–48 h). Strefa DNS w OVH przestanie mieć znaczenie – możesz ją zostawić.
 
-## Krok 5. Publikacja strony na Cloudflare Pages (połączenie z GitHubem)
+## Krok 5. Publikacja strony na Cloudflare Workers (połączenie z GitHubem)
 
-Kod jest w repo https://github.com/Kisioj/juracode.pl (gałąź `main`). Cloudflare Pages pobiera go
-z GitHuba i publikuje stronę automatycznie po każdym pushu – wystarczy jednorazowo połączyć:
+Kod jest w repo https://github.com/Kisioj/juracode.pl (gałąź `main`). Cloudflare pobiera go
+z GitHuba i publikuje stronę automatycznie po każdym pushu – wystarczy jednorazowo połączyć.
+(Cloudflare Pages jest oznaczone w panelu jako „legacy”, dlatego używamy Workers ze statycznymi plikami;
+konfiguracja jest w `wrangler.jsonc`.)
 
-1. Cloudflare → **Workers & Pages** → **Create** → zakładka **Pages** → **Import an existing Git repository**
-   (jeśli kreator proponuje Workers, kliknij link do Pages, np. „Looking to deploy Pages? Get started”).
-2. **Connect GitHub** → zaloguj się jako **Kisioj** → zainstaluj aplikację Cloudflare
-   (wystarczy dostęp tylko do repozytorium `juracode.pl`).
-3. Wybierz repo `Kisioj/juracode.pl` → **Begin setup**:
-   - Project name: `juracode`
-   - Production branch: `main`
-   - Framework preset: **None**
+1. Cloudflare → **Workers & Pages** → **Create** → **Continue with GitHub** / import repozytorium.
+2. Połącz konto GitHub **Kisioj** (wystarczy dostęp tylko do repozytorium `juracode.pl`).
+3. Wybierz repo `juracode.pl` → **Next** i ustaw:
+   - Project name: **`juracode`** (musi być taka sama jak `name` w `wrangler.jsonc`)
    - Build command: *(puste)*
-   - Build output directory: `public`
-4. **Save and Deploy**.
+   - Deploy command: `npx wrangler deploy` (domyślne)
+4. **Deploy**.
 
-Od teraz każda zmiana wypchnięta na `main` trafia na stronę w ~1 minutę, a zmiany na innych gałęziach
-dostają podglądowy adres `*.juracode.pages.dev`.
+Od teraz każda zmiana wypchnięta na `main` trafia na stronę w ~1 minutę.
+Strona będzie dostępna pod adresem `https://juracode.<twoja-subdomena>.workers.dev`
+(po podpięciu domeny Claude wyłączy ten adres w `wrangler.jsonc`, żeby nie dublował treści w Google).
 
-Strona będzie dostępna pod `https://juracode.pages.dev`. Teraz domena:
+Teraz domena (po kroku 4, gdy juracode.pl jest już aktywna w Cloudflare):
 
-1. Projekt `juracode` → **Custom domains** → **Set up a custom domain** → `juracode.pl` → **Activate domain**.
+1. Worker `juracode` → **Settings** → **Domains & Routes** → **Add** → **Custom domain** → `juracode.pl`.
 2. To samo dla `www.juracode.pl`.
 3. Przekierowanie `www` → bez `www`: w panelu domeny `juracode.pl` → **Rules** → **Redirect Rules**
    → **Create rule** → szablon **„Redirect from WWW to root”** → **Deploy**.
@@ -176,7 +177,7 @@ W panelu Cloudflare → **DNS** → **Records**:
 
 Ta weryfikacja przyda się też w Google Play Console (potwierdzenie strony organizacji).
 Strona ma już: tytuły i opisy dla każdej strony, `canonical`, pary językowe `hreflang` (PL ↔ EN),
-dane strukturalne Organization, sitemap i robots.txt. Adres `*.pages.dev` jest wyłączony z indeksowania.
+dane strukturalne Organization, sitemap i robots.txt.
 
 ## Krok 11. Konto organizacji w Google Play
 
