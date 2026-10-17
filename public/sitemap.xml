@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://juracode.pl/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://juracode.pl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://juracode.pl/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://juracode.pl/"/>
+  </url>
+  <url>
+    <loc>https://juracode.pl/en/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://juracode.pl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://juracode.pl/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://juracode.pl/"/>
+  </url>
+  <url>
+    <loc>https://juracode.pl/polityka-prywatnosci/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://juracode.pl/polityka-prywatnosci/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://juracode.pl/en/privacy-policy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://juracode.pl/polityka-prywatnosci/"/>
+  </url>
+  <url>
+    <loc>https://juracode.pl/en/privacy-policy/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://juracode.pl/polityka-prywatnosci/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://juracode.pl/en/privacy-policy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://juracode.pl/polityka-prywatnosci/"/>
+  </url>
+  <url>
+    <loc>https://juracode.pl/polityka-prywatnosci-aplikacji/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://juracode.pl/polityka-prywatnosci-aplikacji/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://juracode.pl/en/app-privacy-policy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://juracode.pl/polityka-prywatnosci-aplikacji/"/>
+  </url>
+  <url>
+    <loc>https://juracode.pl/en/app-privacy-policy/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://juracode.pl/polityka-prywatnosci-aplikacji/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://juracode.pl/en/app-privacy-policy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://juracode.pl/polityka-prywatnosci-aplikacji/"/>
+  </url>
+  <url>
+    <loc>https://juracode.pl/usuwanie-danych/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://juracode.pl/usuwanie-danych/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://juracode.pl/en/data-deletion/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://juracode.pl/usuwanie-danych/"/>
+  </url>
+  <url>
+    <loc>https://juracode.pl/en/data-deletion/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://juracode.pl/usuwanie-danych/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://juracode.pl/en/data-deletion/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://juracode.pl/usuwanie-danych/"/>
+  </url>
+</urlset>

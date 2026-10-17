@@ -1,0 +1,19 @@
+/* Ładowane tylko przy wyłączonym JavaScripcie (<noscript>): menu zawsze widoczne */
+
+@media (max-width: 760px) {
+  .nav-toggle { display: none; }
+  .header-inner { flex-wrap: wrap; padding-block: 12px; }
+  .site-nav {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+    padding: 0;
+    background: none;
+    border: 0;
+    box-shadow: none;
+  }
+  .site-nav a:not(.btn) { padding: 0; border: 0; font-size: 0.95rem; }
+  .site-nav .btn { margin-top: 0; }
+}
