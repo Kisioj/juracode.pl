@@ -77,23 +77,25 @@ Przed spamem chroni ukryte pole `botcheck`. Darmowy plan: 250 wiadomości/miesi�
 4. Czekaj na maila od Cloudflare, że domena jest aktywna (zwykle od kilkunastu minut do kilku
    godzin, maksymalnie 24–48 h). Strefa DNS w OVH przestanie mieć znaczenie – możesz ją zostawić.
 
-## Krok 5. Publikacja strony na Cloudflare Pages
+## Krok 5. Publikacja strony na Cloudflare Pages (połączenie z GitHubem)
 
-**Wariant A – z terminala (polecany, publikację wykonuje Claude):**
+Kod jest w repo https://github.com/Kisioj/juracode.pl (gałąź `main`). Cloudflare Pages pobiera go
+z GitHuba i publikuje stronę automatycznie po każdym pushu – wystarczy jednorazowo połączyć:
 
-Jednorazowo zaloguj się do Cloudflare, wpisując w Claude Code `! npx wrangler login`
-(otworzy się przeglądarka). Potem Claude publikuje stronę poleceniem:
+1. Cloudflare → **Workers & Pages** → **Create** → zakładka **Pages** → **Import an existing Git repository**
+   (jeśli kreator proponuje Workers, kliknij link do Pages, np. „Looking to deploy Pages? Get started”).
+2. **Connect GitHub** → zaloguj się jako **Kisioj** → zainstaluj aplikację Cloudflare
+   (wystarczy dostęp tylko do repozytorium `juracode.pl`).
+3. Wybierz repo `Kisioj/juracode.pl` → **Begin setup**:
+   - Project name: `juracode`
+   - Production branch: `main`
+   - Framework preset: **None**
+   - Build command: *(puste)*
+   - Build output directory: `public`
+4. **Save and Deploy**.
 
-```bash
-npx wrangler pages deploy public --project-name=juracode # przy pierwszym razie utworzy projekt
-```
-
-Każda kolejna aktualizacja strony to to samo polecenie `deploy`.
-
-**Wariant B – przez przeglądarkę:** Cloudflare → **Workers & Pages** → **Create** → zakładka **Pages**
-→ **Upload assets** (Direct Upload) → nazwa projektu `juracode` → przeciągnij **zawartość katalogu `public`**
-→ **Deploy**. (Alternatywnie możesz wrzucić projekt na GitHub i wybrać „Import an existing Git repository”:
-build command pusty, build output directory `public` – wtedy każdy `git push` publikuje stronę.)
+Od teraz każda zmiana wypchnięta na `main` trafia na stronę w ~1 minutę, a zmiany na innych gałęziach
+dostają podglądowy adres `*.juracode.pages.dev`.
 
 Strona będzie dostępna pod `https://juracode.pages.dev`. Teraz domena:
 
