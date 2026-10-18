@@ -223,6 +223,8 @@ tylko po zgodzie zebranej formularzem Google UMP. Jeśli używasz AdMob, dodaj t
 
 - Wspólny nagłówek i stopka są skopiowane w każdym pliku HTML (bez build-stepu) – zmieniając menu
   lub stopkę, popraw wszystkie strony. Pamiętaj o obu wersjach językowych.
+- Przeglądarki trzymają CSS i JS przez dobę. Po każdej zmianie w `public/assets/css` lub `public/assets/js`
+  podbij wersję w odnośnikach (`style.css?v=RRRRMMDD`, `nojs.css?v=…`, `main.js?v=…`) we wszystkich plikach HTML.
 - Dodając nową podstronę: dopisz ją do `sitemap.xml` (z parą `hreflang`) i dodaj w `<head>` linki
   `canonical` oraz `alternate hreflang` wskazujące na odpowiednik w drugim języku.
 - Gdybyś dodał analitykę (np. Cloudflare Web Analytics – bez cookies), zaktualizuj punkt o cookies
