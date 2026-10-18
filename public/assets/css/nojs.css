@@ -1,6 +1,6 @@
 /* Ładowane tylko przy wyłączonym JavaScripcie (<noscript>): menu zawsze widoczne */
 
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .nav-toggle { display: none; }
   .header-inner { flex-wrap: wrap; padding-block: 12px; }
   .site-nav {
